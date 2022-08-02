@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +37,7 @@ public class PostagemController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	@GetMapping ("/{id}")// assim que fizer uma requisição no valor id e passar algum atributo vai ser acessado esse metodo:
-	public ResponseEntity<PostagemModel> GetById(@PathVariable Long id){ // aqui vai mostrar qual a variavel que estamos recebendo dentro do pathvariable
+	public ResponseEntity<PostagemModel> getById(@PathVariable Long id){ // aqui vai mostrar qual a variavel que estamos recebendo dentro do pathvariable
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	} // vai retornar a interface que criamos com o autowired 1. vai retornar um metodo o tipo postagem 2 quanto um notfound caso 
 		// o objeto não exista ou se existir algum erro com a requisição;
@@ -61,7 +59,7 @@ public class PostagemController {
 	}
 	
 	@DeleteMapping ("/{id}")
-	public void deletePostagem(@PathVariable long id) {
+	public void deletePostagem(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
 		

@@ -1,16 +1,20 @@
 package com.blog.generation.blogPessoal.model;
 
 import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity // para que essa classe seja interpretada no banco de dados como uma entidade tem que inserir isso;
 // são parametros que se bota em cima da classe para defenir o comportamentos dela
@@ -25,16 +29,21 @@ public class PostagemModel {
 	
 	
 	@NotBlank (message = "O titulo não pode ser nulo!!" ) //não permite valor nulo e o comprimento (sem considerar espaços em branco) deve ser maior que zero;
-	@Size (min=5, max=100)
+	@Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
 	private String titulo;
 	
 	@NotNull (message = "O texto não pode ser nulo!!" ) // Não permite um valor nulo, porém permite um valor vazio;
-	@Size (min=5, max=1000)
+	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 500 caracteres")
 	private String texto;
 	
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@ManyToOne    // comando da chave estrangeira para ligar a outra tabela
+	@JsonIgnoreProperties ("postagem") // evitando a recursividade que pode dar no programa quando fizer o relacionamento de postagem com tema;
+	private TemaModel tema;
+	
 	
 	// se cria os gets and setters nessa classe porque será nossa principal, o nosso objeto; nossa "tabela principal e seus atributos;
 	public Long getId() {
@@ -61,6 +70,13 @@ public class PostagemModel {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
+	public TemaModel getTema() {
+		return tema;
+	}
+	public void setTema(TemaModel tema) {
+		this.tema = tema;
+	}
+	
 	
 
 }
