@@ -44,6 +44,10 @@ public class PostagemModel {
 	@JsonIgnoreProperties ("postagem") // evitando a recursividade que pode dar no programa quando fizer o relacionamento de postagem com tema;
 	private TemaModel tema;
 	
+	@ManyToOne
+	@JsonIgnoreProperties ("postagem")
+	private UsuarioModel usuario;
+	
 	
 	// se cria os gets and setters nessa classe porque será nossa principal, o nosso objeto; nossa "tabela principal e seus atributos;
 	public Long getId() {
@@ -76,6 +80,13 @@ public class PostagemModel {
 	public void setTema(TemaModel tema) {
 		this.tema = tema;
 	}
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
+	
 	
 	
 
