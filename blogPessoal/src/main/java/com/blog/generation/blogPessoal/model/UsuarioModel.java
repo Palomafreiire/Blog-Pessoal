@@ -33,10 +33,6 @@ public class UsuarioModel {
 	@NotNull (message= "O nome é obrigatório")
 	private String usuario;
 	
-	@NotNull (message= "O email é obrigatório")
-	@Email (message = "Insira seu email para logar seu usuário!")
-	private String email;
-	
 	@NotBlank  (message = "Insira sua senha de minimo 6 digitos")
 	@Size (min = 6)
 	private String senha;
@@ -47,6 +43,18 @@ public class UsuarioModel {
 	@OneToMany (mappedBy = "usuario", cascade= CascadeType.REMOVE )
 	@JsonIgnoreProperties ("usuario")
 	private List<PostagemModel> postagem;
+
+	public UsuarioModel(Long id, String nome, String usuario, String senha, String foto) {
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+		this.foto = foto;
+	}
+	
+	public UsuarioModel() {        }
+
+
 
 	public Long getId() {
 		return id;
@@ -72,14 +80,6 @@ public class UsuarioModel {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getSenha() {
