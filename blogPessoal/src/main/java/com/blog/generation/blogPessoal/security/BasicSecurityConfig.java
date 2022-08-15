@@ -34,8 +34,8 @@ class BasicSecurityConfig {
 		.and().csrf().disable().cors();
 		
 		http
-		.authorizeHttpRequests((auth) -> auth.antMatchers("/usuarios/logar").permitAll()
-				.antMatchers("/usuarios/cadastrar").permitAll()
+		.authorizeHttpRequests((auth) -> auth.antMatchers("/usuario/logar").permitAll()
+				.antMatchers("/usuario/cadastrar").permitAll()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated())
 				.httpBasic();
