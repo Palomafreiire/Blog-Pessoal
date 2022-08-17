@@ -3,6 +3,7 @@ package com.blog.generation.blogPessoal.service;
 import java.nio.charset.Charset;
 import java.util.Optional;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -91,7 +92,7 @@ public class UsuarioService {
         private String gerarBasicToken(String usuario, String senha) {
 
             String token = usuario + ":" + senha;
-            byte[] tokenBase64 = org.apache.commons.codec.binary.Base64.encodeBase64(token.getBytes(Charset.forName("US-ASCII")));
+            byte[] tokenBase64 = Base64.encodeBase64(token.getBytes(Charset.forName("US-ASCII")));
             return "Basic " + new String(tokenBase64);
 
         }

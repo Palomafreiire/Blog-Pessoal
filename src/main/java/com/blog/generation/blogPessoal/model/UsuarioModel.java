@@ -19,6 +19,8 @@ import org.hibernate.annotations.Cascade;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table (name = "tb_usuario")
 public class UsuarioModel {
@@ -30,7 +32,9 @@ public class UsuarioModel {
 	@NotNull(message = "O Atributo Nome é Obrigatório!")
 	private String nome;
 	
-	@NotNull (message= "O nome é obrigatório")
+	@Schema(example = "email@email.com.br")
+	@NotNull(message = "O Atributo Usuário é Obrigatório!")
+	@Email(message = "O Atributo Usuário deve ser um email válido!")
 	private String usuario;
 	
 	@NotBlank  (message = "Insira sua senha de minimo 6 digitos")
