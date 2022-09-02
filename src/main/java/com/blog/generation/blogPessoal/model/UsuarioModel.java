@@ -44,6 +44,8 @@ public class UsuarioModel {
 	@Size (max=5000, message= "O link da foto deve ter no máximo 5000 caracteres")
 	private String foto;
 	
+	private String tipo;
+	
 	@OneToMany (mappedBy = "usuario", cascade= CascadeType.REMOVE )
 	@JsonIgnoreProperties ("usuario")
 	private List<PostagemModel> postagem;
@@ -109,10 +111,18 @@ public class UsuarioModel {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	
 	
 	
-	
+
 	
 	
 	
