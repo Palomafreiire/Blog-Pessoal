@@ -36,6 +36,9 @@ public class PostagemModel {
 	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 500 caracteres")
 	private String texto;
 	
+	@Size (max=5000, message= "O link da foto deve ter no máximo 5000 caracteres")
+	private String foto;
+	
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
@@ -85,6 +88,12 @@ public class PostagemModel {
 	}
 	public void setUsuario(UsuarioModel usuario) {
 		this.usuario = usuario;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 	
